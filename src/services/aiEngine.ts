@@ -307,6 +307,11 @@ export interface AssistantAnswer {
  * Solves questions from core curriculum: Python, Java, DBMS, and Machine Learning (ML).
  * Provides grounded code examples, conceptual breakdown, and syllabus cross-references.
  */
+export function solveQueryOffline(userQuery: string): string {
+  const res = queryLocalLearningAssistant(userQuery, null, []);
+  return res.answerText;
+}
+
 export function queryLocalLearningAssistant(
   userQuery: string,
   activeCourseId: string | null,
