@@ -8,6 +8,23 @@
   --border-subtle: #E5E1D8;
 }
 
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 16.5px;
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+
 html.dark {
   --bg-main: #141915;
   --text-main: #E8EDEA;

@@ -61,36 +61,36 @@ export const Header: React.FC<{
   };
 
   return (
-    <header className="bg-white border-b border-[#E5E1D8] sticky top-0 z-30 px-4 lg:px-8 py-3 flex items-center justify-between shadow-xs">
+    <header className="bg-white dark:bg-[#1C231E] border-b border-[#E5E1D8] dark:border-[#2B352E] sticky top-0 z-30 px-4 sm:px-8 lg:px-12 py-3.5 flex items-center justify-between shadow-xs transition-colors">
       {/* Brand & Active view breadcrumb */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 sm:gap-6">
         {onToggleMobileSidebar && (
           <button
             onClick={onToggleMobileSidebar}
-            className="md:hidden p-2 rounded-full border border-[#E5E1D8] text-[#586358] hover:bg-[#F9F7F2] cursor-pointer"
+            className="md:hidden p-2.5 rounded-xl border border-[#E5E1D8] dark:border-[#2B352E] text-[#586358] hover:bg-[#F9F7F2] dark:hover:bg-[#262E27] cursor-pointer"
             aria-label="Toggle navigation menu"
           >
-            <span className="block w-4 h-0.5 bg-[#586358] mb-1"></span>
-            <span className="block w-4 h-0.5 bg-[#586358] mb-1"></span>
-            <span className="block w-4 h-0.5 bg-[#586358]"></span>
+            <span className="block w-5 h-0.5 bg-[#586358] mb-1"></span>
+            <span className="block w-5 h-0.5 bg-[#586358] mb-1"></span>
+            <span className="block w-5 h-0.5 bg-[#586358]"></span>
           </button>
         )}
 
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-[#343F35] flex items-center justify-center text-[#A3B18A] shadow-xs font-bold text-base tracking-tight">
+        <div className="flex items-center gap-3.5 sm:gap-4">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1E271F] via-[#2F3E31] to-[#1B4332] flex items-center justify-center text-[#D8F3DC] border-2 border-[#588157]/60 shadow-md font-black text-2xl sm:text-3xl tracking-wider shrink-0 transition-transform hover:scale-105">
             LF
           </div>
           <div>
-            <div className="font-bold text-[#1F241F] tracking-tight text-lg leading-tight">
+            <div className="font-black text-[#1F241F] dark:text-white tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-tight flex items-center gap-2">
               LearnFlow
             </div>
-            <div className="text-[11px] text-[#6D756D] font-medium tracking-wide">
-              {currentSectionTitle}
+            <div className="text-xs sm:text-sm text-[#588157] dark:text-[#A3B18A] font-bold tracking-wider uppercase flex items-center gap-2">
+              <span>{currentSectionTitle}</span>
             </div>
           </div>
         </div>
 
-        <div className="hidden md:block h-6 w-px bg-[#E5E1D8]" />
+        <div className="hidden md:block h-8 w-px bg-[#E5E1D8] dark:bg-[#2B352E]" />
 
         <div className="hidden sm:block">
           {getRoleBadge(currentUser?.role)}
@@ -98,18 +98,18 @@ export const Header: React.FC<{
       </div>
 
       {/* Right-hand utilities */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3.5">
         {/* Theme Toggle (Dark / Light Mode) */}
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-full bg-white border border-[#E5E1D8] shadow-xs text-[#586358] hover:text-[#1F241F] hover:bg-[#F9F7F2] transition-colors cursor-pointer"
+          className="p-2.5 rounded-xl bg-white dark:bg-[#1C231E] border border-[#E5E1D8] dark:border-[#2B352E] shadow-xs text-[#586358] hover:text-[#1F241F] dark:hover:text-white hover:bg-[#F9F7F2] dark:hover:bg-[#262E27] transition-colors cursor-pointer"
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           aria-label="Toggle theme mode"
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-[#E2B714]" />
+            <Sun className="w-5 h-5 text-[#E2B714]" />
           ) : (
-            <Moon className="w-4 h-4 text-[#343F35]" />
+            <Moon className="w-5 h-5 text-[#343F35]" />
           )}
         </button>
 
@@ -117,13 +117,13 @@ export const Header: React.FC<{
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="p-2 rounded-full bg-white border border-[#E5E1D8] shadow-xs text-[#586358] hover:text-[#1F241F] hover:bg-[#F9F7F2] transition-colors relative cursor-pointer"
+            className="p-2.5 rounded-xl bg-white dark:bg-[#1C231E] border border-[#E5E1D8] dark:border-[#2B352E] shadow-xs text-[#586358] hover:text-[#1F241F] dark:hover:text-white hover:bg-[#F9F7F2] dark:hover:bg-[#262E27] transition-colors relative cursor-pointer"
             title="Notifications"
             aria-label="View notifications"
           >
-            <Bell className="w-4 h-4" />
+            <Bell className="w-5 h-5" />
             {unreadNotifications.length > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[#E2725B] text-white text-[10px] font-bold flex items-center justify-center shadow-xs">
+              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#E2725B] text-white text-[11px] font-bold flex items-center justify-center shadow-xs">
                 {unreadNotifications.length}
               </span>
             )}
@@ -198,29 +198,29 @@ export const Header: React.FC<{
         </div>
 
         {/* User Card */}
-        <div className="flex items-center gap-3 pl-3 border-l border-[#E5E1D8]">
+        <div className="flex items-center gap-3.5 pl-3.5 border-l border-[#E5E1D8] dark:border-[#2B352E]">
           <div className="hidden lg:block text-right">
-            <div className="text-xs font-semibold text-[#1F241F] leading-tight">
+            <div className="text-sm font-bold text-[#1F241F] dark:text-white leading-tight">
               {currentUser?.name}
             </div>
-            <div className="text-[10px] text-[#A3B18A] uppercase font-bold truncate max-w-[140px]">
+            <div className="text-xs text-[#588157] dark:text-[#A3B18A] uppercase font-bold tracking-wider truncate max-w-[160px]">
               {currentUser?.title || currentUser?.department || currentUser?.role}
             </div>
           </div>
           <UserAvatar
             name={currentUser?.name || 'User'}
             role={currentUser?.role}
-            size="md"
+            size="lg"
           />
         </div>
 
         {/* Logout action */}
         <button
           onClick={logout}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-[#2D332D] hover:text-[#1F241F] hover:bg-[#F9F7F2] border border-[#E5E1D8] shadow-xs transition-colors cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-[#2D332D] dark:text-[#E8EDEA] hover:text-[#1F241F] hover:bg-[#F9F7F2] dark:hover:bg-[#262E27] border border-[#E5E1D8] dark:border-[#2B352E] shadow-xs transition-colors cursor-pointer"
           title="Sign out of platform"
         >
-          <LogOut className="w-3.5 h-3.5 text-[#586358]" />
+          <LogOut className="w-4 h-4 text-[#586358] dark:text-[#A3B18A]" />
           <span className="hidden sm:inline">Logout</span>
         </button>
       </div>

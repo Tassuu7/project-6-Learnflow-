@@ -239,7 +239,7 @@ const MainApplication: React.FC = () => {
         onToggleMobileSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
       />
 
-      <div className="flex-1 flex w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 gap-6">
+      <div className="flex-1 flex w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-6 gap-6 xl:gap-8">
         {/* Responsive Sidebar */}
         <Sidebar
           activeTab={activeTab}

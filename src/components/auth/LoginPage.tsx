@@ -58,29 +58,31 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F2] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#343F35] text-[#A3B18A] shadow-xs font-bold text-2xl mb-4">
+    <div className="min-h-screen bg-[#F9F7F2] dark:bg-[#121714] flex flex-col justify-center py-10 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="sm:mx-auto sm:w-full sm:max-w-xl text-center">
+        <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-[#1E271F] via-[#2F3E31] to-[#1B4332] text-[#D8F3DC] border-3 border-[#588157]/60 shadow-xl font-black text-4xl sm:text-5xl mb-4 tracking-wider transition-transform hover:scale-105">
           LF
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-[#1F241F]">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1F241F] dark:text-white">
           LearnFlow
         </h1>
-        <p className="mt-2 text-sm text-[#6D756D] max-w-sm mx-auto">
+        <p className="mt-3 text-base sm:text-lg text-[#586358] dark:text-[#A3B18A] font-semibold max-w-md mx-auto">
           Offline-First Intelligent Online Learning Platform
         </p>
-        <p className="text-xs text-[#A3B18A] mt-1 font-semibold uppercase tracking-wider">
-          Learn Anywhere. Continue Everywhere.
-        </p>
+        <div className="mt-3">
+          <span className="text-xs sm:text-sm text-[#386641] dark:text-[#A3B18A] bg-[#E8EDEA] dark:bg-[#262E27] px-4 py-1.5 rounded-full inline-block font-bold uppercase tracking-widest border border-[#A3B18A]/50 shadow-2xs">
+            Learn Anywhere. Continue Everywhere.
+          </span>
+        </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-6 shadow-sm sm:rounded-2xl sm:px-10 border border-[#E5E1D8]">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl">
+        <div className="bg-white dark:bg-[#1C231E] py-10 px-6 sm:px-10 shadow-md sm:rounded-3xl border border-[#E5E1D8] dark:border-[#2B352E]">
           {/* Header notice */}
-          <div className="mb-6 pb-4 border-b border-[#F0EDE6]">
-            <h2 className="text-lg font-bold text-[#1F241F]">Platform Sign In</h2>
-            <p className="text-xs text-[#6D756D] mt-0.5">
-              Enter your credentials to access your designated role workspace.
+          <div className="mb-6 pb-4 border-b border-[#F0EDE6] dark:border-[#2B352E]">
+            <h2 className="text-xl sm:text-2xl font-black text-[#1F241F] dark:text-white">Platform Sign In</h2>
+            <p className="text-xs sm:text-sm text-[#6D756D] dark:text-[#B5BEB6] mt-1">
+              Select a 1-click test account or enter credentials below:
             </p>
           </div>
 
@@ -95,7 +97,7 @@ export const LoginPage: React.FC = () => {
             <div>
               <label
                 htmlFor="email-input"
-                className="block text-xs font-bold text-[#586358] uppercase tracking-wider mb-1"
+                className="block text-xs sm:text-sm font-bold text-[#586358] dark:text-[#A3B18A] uppercase tracking-wider mb-1"
               >
                 Email or Username
               </label>
@@ -165,24 +167,24 @@ export const LoginPage: React.FC = () => {
 
           {/* Quick Demo Switcher - Exactly 3 Platform Roles */}
           <div className="mt-8 pt-6 border-t border-[#F0EDE6]">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#6D756D] mb-2 text-center">
+            <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#586358] dark:text-[#A3B18A] mb-3 text-center">
               Select 1-Click Demo Account (3 Designated Roles)
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
               {/* Student */}
               <button
                 type="button"
                 onClick={() => handleQuickFill('student01@example.local', 'student123')}
-                className="p-2.5 rounded-xl border border-[#E5E1D8] hover:border-[#588157] hover:bg-[#E8EDEA]/40 transition-all cursor-pointer group"
+                className="p-3.5 rounded-2xl border-2 border-[#E5E1D8] dark:border-[#2B352E] hover:border-[#588157] hover:bg-[#E8EDEA]/40 dark:hover:bg-[#262E27] transition-all cursor-pointer group"
               >
-                <div className="flex items-center gap-1.5 font-semibold text-xs text-[#1F241F] group-hover:text-[#343F35]">
-                  <GraduationCap className="w-3.5 h-3.5 text-[#588157]" />
+                <div className="flex items-center gap-2 font-bold text-sm sm:text-base text-[#1F241F] dark:text-white group-hover:text-[#588157]">
+                  <GraduationCap className="w-4 h-4 text-[#588157]" />
                   Student
                 </div>
-                <div className="text-[10px] text-[#6D756D] mt-0.5 truncate font-mono">
+                <div className="text-xs text-[#6D756D] dark:text-[#A3B18A] mt-1 truncate font-mono">
                   student01@...
                 </div>
-                <div className="text-[9px] text-[#588157] font-medium mt-0.5">
+                <div className="text-xs text-[#588157] font-semibold mt-1">
                   Learn & Quizzes
                 </div>
               </button>
@@ -191,16 +193,16 @@ export const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleQuickFill('instructor01@example.local', 'instructor123')}
-                className="p-2.5 rounded-xl border border-[#E5E1D8] hover:border-[#F2CC8F] hover:bg-[#FDF8EE] transition-all cursor-pointer group"
+                className="p-3.5 rounded-2xl border-2 border-[#E5E1D8] dark:border-[#2B352E] hover:border-[#F2CC8F] hover:bg-[#FDF8EE] dark:hover:bg-[#262E27] transition-all cursor-pointer group"
               >
-                <div className="flex items-center gap-1.5 font-semibold text-xs text-[#1F241F] group-hover:text-[#8C6019]">
-                  <BookOpen className="w-3.5 h-3.5 text-[#B27D26]" />
+                <div className="flex items-center gap-2 font-bold text-sm sm:text-base text-[#1F241F] dark:text-white group-hover:text-[#B27D26]">
+                  <BookOpen className="w-4 h-4 text-[#B27D26]" />
                   Faculty
                 </div>
-                <div className="text-[10px] text-[#6D756D] mt-0.5 truncate font-mono">
+                <div className="text-xs text-[#6D756D] dark:text-[#A3B18A] mt-1 truncate font-mono">
                   instructor01@...
                 </div>
-                <div className="text-[9px] text-[#B27D26] font-medium mt-0.5">
+                <div className="text-xs text-[#B27D26] font-semibold mt-1">
                   Syllabus & Solver
                 </div>
               </button>
@@ -209,16 +211,16 @@ export const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => handleQuickFill('admin@example.local', 'admin123')}
-                className="p-2.5 rounded-xl border border-[#E5E1D8] hover:border-[#A3B18A] hover:bg-[#F4F1EA] transition-all cursor-pointer group"
+                className="p-3.5 rounded-2xl border-2 border-[#E5E1D8] dark:border-[#2B352E] hover:border-[#A3B18A] hover:bg-[#F4F1EA] dark:hover:bg-[#262E27] transition-all cursor-pointer group"
               >
-                <div className="flex items-center gap-1.5 font-semibold text-xs text-[#1F241F]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#586358]" />
+                <div className="flex items-center gap-2 font-bold text-sm sm:text-base text-[#1F241F] dark:text-white group-hover:text-[#343F35]">
+                  <ShieldCheck className="w-4 h-4 text-[#586358]" />
                   Admin
                 </div>
-                <div className="text-[10px] text-[#6D756D] mt-0.5 truncate font-mono">
+                <div className="text-xs text-[#6D756D] dark:text-[#A3B18A] mt-1 truncate font-mono">
                   admin@...
                 </div>
-                <div className="text-[9px] text-[#586358] font-medium mt-0.5">
+                <div className="text-xs text-[#586358] dark:text-[#A3B18A] font-semibold mt-1">
                   Governance
                 </div>
               </button>
