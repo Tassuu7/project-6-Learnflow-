@@ -57,7 +57,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           { id: 'notes', label: 'Notes & Bookmarks', icon: Bookmark },
           { id: 'assistant', label: 'AI Subject Solver (Online)', icon: Sparkles },
           { id: 'certificates', label: 'Certificates', icon: Award },
-          { id: 'offline', label: 'Offline Learning Sync', icon: HardDriveDownload },
           { id: 'analytics', label: 'Progress & Analytics', icon: BarChart3 },
         ];
       case 'INSTRUCTOR':
@@ -134,19 +133,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
         })}
       </div>
 
-      {/* Storage & Sync status card matching Design HTML */}
+      {/* Online Cloud status card matching Design HTML */}
       <div className="mt-auto pt-4 border-t border-[#4A5D4E]/40">
         <div className="p-4 bg-[#262E27] rounded-xl border border-[#4A5D4E]/30 text-[#E8EDEA]">
           <div className="flex items-center justify-between text-xs uppercase tracking-wider text-[#A3B18A] font-bold mb-2.5">
-            <span>Offline Local Storage</span>
+            <span>Online Cloud Platform</span>
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
           </div>
           <div className="w-full h-2 bg-[#4A5D4E] rounded-full overflow-hidden">
-            <div className="w-4/5 h-full bg-emerald-400"></div>
+            <div className="w-full h-full bg-emerald-400"></div>
           </div>
           <div className="text-xs mt-2.5 text-[#E8EDEA]/70 flex items-center justify-between font-mono">
-            <span>LearnFlow Engine v2.4</span>
-            <span className="text-emerald-300 font-bold">100% Operational</span>
+            <span>LearnFlow Online Hub</span>
+            <span className="text-emerald-300 font-bold">100% Online & Live</span>
           </div>
         </div>
       </div>

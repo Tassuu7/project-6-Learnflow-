@@ -67,11 +67,11 @@ export const LoginPage: React.FC = () => {
           LearnFlow
         </h1>
         <p className="mt-3 text-base sm:text-lg text-[#586358] dark:text-[#A3B18A] font-semibold max-w-md mx-auto">
-          Offline-First Intelligent Online Learning Platform
+          Enterprise Online Engineering & Interactive Learning Platform
         </p>
         <div className="mt-3">
           <span className="text-xs sm:text-sm text-[#386641] dark:text-[#A3B18A] bg-[#E8EDEA] dark:bg-[#262E27] px-4 py-1.5 rounded-full inline-block font-bold uppercase tracking-widest border border-[#A3B18A]/50 shadow-2xs">
-            Learn Anywhere. Continue Everywhere.
+            100% Online Cloud Platform. Master Engineering Everywhere.
           </span>
         </div>
       </div>
@@ -242,13 +242,13 @@ export const LoginPage: React.FC = () => {
         {/* System features badge */}
         <div className="mt-6 text-center flex items-center justify-center gap-4 text-xs text-[#6D756D]">
           <span className="flex items-center gap-1">
-            <Wifi className="w-3.5 h-3.5 text-[#588157]" /> Offline Capable
+            <Wifi className="w-3.5 h-3.5 text-[#588157]" /> 100% Online & Live
           </span>
           <span className="flex items-center gap-1">
             <KeyRound className="w-3.5 h-3.5 text-[#B27D26]" /> RBAC Protected
           </span>
           <span className="flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-[#586358]" /> Local Intelligence
+            <Sparkles className="w-3.5 h-3.5 text-[#586358]" /> AI Subject Solver
           </span>
         </div>
       </div>

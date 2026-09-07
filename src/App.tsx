@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LearningProvider, useLearning } from './context/LearningContext';
 import { ThemeProvider } from './context/ThemeContext';
-import { OfflineStatusBar } from './components/common/OfflineStatusBar';
 import { Header } from './components/common/Header';
 import { Sidebar } from './components/common/Sidebar';
 import { LoginPage } from './components/auth/LoginPage';
@@ -58,7 +57,6 @@ const MainApplication: React.FC = () => {
   if (!isAuthenticated || !currentUser) {
     return (
       <div className="min-h-screen bg-[#F9F7F2] dark:bg-[#121714] flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
-        <OfflineStatusBar />
         <LoginPage />
       </div>
     );
@@ -233,7 +231,6 @@ const MainApplication: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F9F7F2] dark:bg-[#121714] flex flex-col text-[#2D332D] dark:text-[#E8EDEA] font-sans antialiased transition-colors duration-200">
-      <OfflineStatusBar />
       <Header
         currentSectionTitle={getSectionTitle()}
         onToggleMobileSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
