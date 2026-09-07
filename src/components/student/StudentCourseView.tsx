@@ -16,6 +16,8 @@ import {
   RotateCcw,
   Check,
   Bookmark,
+  FileText,
+  Save,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useLearning } from '../../context/LearningContext';
@@ -31,7 +33,12 @@ export const StudentCourseView: React.FC<{
   onNavigateTab: (tab: string, courseId?: string) => void;
 }> = ({ initialCourseId, onNavigateTab }) => {
   const { currentUser } = useAuth();
-  const { markLessonComplete, isLessonCompleted, courses } = useLearning();
+  const { markLessonComplete, isLessonCompleted, courses, notes, saveNote, bookmarks, toggleBookmark } = useLearning();
+
+  // Student topic note state
+  const [topicNote, setTopicNote] = useState('');
+  const [isNoteSaved, setIsNoteSaved] = useState(false);
+  const [showNoteEditor, setShowNoteEditor] = useState(false);
 
   // Determine initial subject from initialCourseId or default to 'Python'
   const getInitialSubject = (): 'Python' | 'Java' | 'DBMS' | 'ML' => {
@@ -72,6 +79,29 @@ export const StudentCourseView: React.FC<{
       setShowSolution(false);
     }
   }, [activeTopic]);
+
+  // Load existing note when topic changes
+  useEffect(() => {
+    if (activeTopic && currentUser) {
+      const existing = notes.find(
+        (n) => n.userId === currentUser.id && n.lessonId === activeTopic.id
+      );
+      setTopicNote(existing ? existing.content : '');
+      setIsNoteSaved(false);
+    }
+  }, [activeTopic, notes, currentUser]);
+
+  const handleSaveNote = () => {
+    if (!currentUser || !activeTopic) return;
+    saveNote(
+      activeSubject.toLowerCase(),
+      activeTopic.id,
+      activeTopic.title,
+      topicNote
+    );
+    setIsNoteSaved(true);
+    setTimeout(() => setIsNoteSaved(false), 3000);
+  };
 
   // When subject changes, reset selected topic to first topic in that subject
   const handleSubjectChange = (subj: 'Python' | 'Java' | 'DBMS' | 'ML') => {
@@ -329,6 +359,63 @@ export const StudentCourseView: React.FC<{
                   <div className="flex-1 bg-black text-emerald-400 font-mono text-xs sm:text-sm p-4 rounded-b-xl border border-t-0 border-slate-900 min-h-[220px] overflow-y-auto whitespace-pre-wrap leading-relaxed">
                     {codeOutput}
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3.5. Student Personal Study Notes (Interactive Notebook) */}
+            <div className="mt-8 bg-amber-50/60 dark:bg-[#23251B] rounded-2xl border-2 border-amber-300 dark:border-amber-700/60 p-6 shadow-sm space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-amber-200/70 dark:border-amber-800/50">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-800 dark:text-amber-300 flex items-center justify-center font-bold">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-amber-950 dark:text-amber-100 flex items-center gap-2">
+                      <span>Personal Study Notes: {activeTopic.title}</span>
+                      {isNoteSaved && (
+                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300 font-semibold flex items-center gap-1">
+                          <Check className="w-3.5 h-3.5" /> Saved!
+                        </span>
+                      )}
+                    </h3>
+                    <p className="text-xs text-amber-800/80 dark:text-amber-300/80">
+                      Write and save your private technical notes, interview reminders, or code snippets for this lesson.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleSaveNote}
+                    className="flex items-center gap-1.5 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs sm:text-sm font-bold shadow-sm transition-colors cursor-pointer"
+                  >
+                    <Save className="w-4 h-4" />
+                    Save Note
+                  </button>
+                  <button
+                    onClick={() => onNavigateTab('notes')}
+                    className="flex items-center gap-1.5 px-3 py-2 bg-white dark:bg-slate-800 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-200 rounded-xl text-xs font-semibold hover:bg-amber-100/50 cursor-pointer"
+                    title="Open full notes notebook"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    All Notes ({notes.filter((n) => n.userId === currentUser?.id).length})
+                  </button>
+                </div>
+              </div>
+
+              {/* Note input area */}
+              <div className="space-y-2">
+                <textarea
+                  value={topicNote}
+                  onChange={(e) => setTopicNote(e.target.value)}
+                  placeholder={`Write your personal study notes, key formulas, or code examples for ${activeTopic.title}...`}
+                  rows={4}
+                  className="w-full p-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-white dark:bg-[#1A1D1A] text-slate-800 dark:text-slate-100 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none resize-y leading-relaxed font-sans"
+                />
+                <div className="flex items-center justify-between text-[11px] text-amber-800/70 dark:text-amber-400">
+                  <span>Autosaves locally to your profile. View anytime in 'My Notes'.</span>
+                  <span>{topicNote.length} characters</span>
                 </div>
               </div>
             </div>

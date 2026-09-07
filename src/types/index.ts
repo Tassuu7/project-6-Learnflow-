@@ -304,6 +304,7 @@ export interface OfflinePackage {
 export interface NotificationItem {
   id: string;
   userId: string; // or 'ALL'
+  targetRole?: UserRole;
   title: string;
   message: string;
   type: 'COURSE' | 'ASSESSMENT' | 'CERTIFICATE' | 'SYSTEM' | 'SYNC';

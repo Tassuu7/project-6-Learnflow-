@@ -28,9 +28,15 @@ export const Header: React.FC<{
   const { theme, toggleTheme } = useTheme();
   const [showNotifications, setShowNotifications] = useState(false);
 
-  const unreadNotifications = notifications.filter(
-    (n) => !n.isRead && (n.userId === currentUser?.id || n.userId === 'ALL')
-  );
+  const userNotifications = notifications.filter((n) => {
+    if (!currentUser) return false;
+    if (n.userId === currentUser.id) return true;
+    if (n.targetRole && n.targetRole === currentUser.role) return true;
+    if (n.userId === 'ALL') return true;
+    return false;
+  });
+
+  const unreadNotifications = userNotifications.filter((n) => !n.isRead);
 
   const getRoleBadge = (role?: string) => {
     switch (role) {
@@ -145,13 +151,13 @@ export const Header: React.FC<{
                 )}
               </div>
 
-              <div className="mt-2 divide-y divide-[#F0EDE6] max-h-80 overflow-y-auto">
-                {notifications.length === 0 ? (
-                  <div className="py-6 text-center text-xs text-[#6D756D]">
-                    No notifications
+              <div className="mt-2 divide-y divide-[#F0EDE6] dark:divide-[#2B352E] max-h-80 overflow-y-auto">
+                {userNotifications.length === 0 ? (
+                  <div className="py-6 text-center text-xs text-[#6D756D] dark:text-[#A3B18A]">
+                    No notifications for your account
                   </div>
                 ) : (
-                  notifications.slice(0, 8).map((notif) => (
+                  userNotifications.slice(0, 10).map((notif) => (
                     <div
                       key={notif.id}
                       onClick={() => {

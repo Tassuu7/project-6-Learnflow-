@@ -195,7 +195,7 @@ export const LearningProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   });
 
   const [notifications, setNotifications] = useState<NotificationItem[]>(() => {
-    const raw = localStorage.getItem('lf_notifications');
+    const raw = localStorage.getItem('lf_notifications_v2');
     return raw ? JSON.parse(raw) : SEED_NOTIFICATIONS;
   });
   const [activeToast, setActiveToast] = useState<NotificationItem | null>(null);
@@ -337,7 +337,7 @@ export const LearningProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [certificates]);
 
   useEffect(() => {
-    localStorage.setItem('lf_notifications', JSON.stringify(notifications));
+    localStorage.setItem('lf_notifications_v2', JSON.stringify(notifications));
   }, [notifications]);
 
   useEffect(() => {
