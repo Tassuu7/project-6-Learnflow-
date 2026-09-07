@@ -41,6 +41,7 @@ import { AdminSyncManagementView } from './components/admin/AdminSyncManagementV
 // Academic Doubts Views
 import { StudentDoubtsView } from './components/student/StudentDoubtsView';
 import { FacultyDoubtsView } from './components/instructor/FacultyDoubtsView';
+import { InteractiveLabView } from './modules/interactiveLab/InteractiveLabView';
 
 const MainApplication: React.FC = () => {
   const { currentUser, isAuthenticated } = useAuth();
@@ -156,6 +157,8 @@ const MainApplication: React.FC = () => {
               onOpenCourse={(cid) => handleNavigate('learning', cid)}
             />
           );
+        case 'lab':
+          return <InteractiveLabView />;
         default:
           return <StudentDashboard onNavigate={handleNavigate} />;
       }
@@ -193,6 +196,8 @@ const MainApplication: React.FC = () => {
               onOpenCourse={(cid) => handleNavigate('builder', cid)}
             />
           );
+        case 'lab':
+          return <InteractiveLabView />;
         default:
           return <InstructorDashboard onNavigate={handleNavigate} />;
       }
