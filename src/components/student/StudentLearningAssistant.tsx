@@ -8,7 +8,6 @@ import {
   HelpCircle,
   ArrowRight,
   ShieldCheck,
-  WifiOff,
   ShieldAlert,
 } from 'lucide-react';
 import { useLearning } from '../../context/LearningContext';
@@ -17,7 +16,7 @@ import { queryLocalLearningAssistant, AssistantAnswer } from '../../services/aiE
 export const StudentLearningAssistant: React.FC<{
   onOpenLesson?: (courseId: string) => void;
 }> = ({ onOpenLesson }) => {
-  const { courses, isOffline, isQuizActive } = useLearning();
+  const { courses, isQuizActive } = useLearning();
 
   const [query, setQuery] = useState('');
   const [selectedCourseId, setSelectedCourseId] = useState<string>('ALL');
@@ -41,6 +40,14 @@ export const StudentLearningAssistant: React.FC<{
     'What is the difference between JVM Stack and Heap memory in Java?',
     'Explain Database Normalization: 1NF, 2NF, 3NF, and BCNF.',
     'How do we calculate Precision, Recall, and F1-Score in ML?',
+    'Explain Python Generators and the yield keyword with code.',
+    'How does HashMap work internally in Java with collisions?',
+    'What is the difference between INNER JOIN and LEFT JOIN in SQL?',
+    'How does Gradient Descent optimization work in Machine Learning?',
+    'What is the difference between Overfitting and Underfitting?',
+    'Explain Object-Oriented Polymorphism in Java with examples.',
+    'What is the Python Global Interpreter Lock (GIL)?',
+    'How does B+ Tree indexing improve database search speed?',
   ];
 
   const handleSend = (textToSend?: string) => {
@@ -164,16 +171,6 @@ export const StudentLearningAssistant: React.FC<{
             </div>
             <p className="text-xs text-[#6D756D] max-w-md mx-auto">
               The AI Subject Assistant is strictly disabled during active quiz examinations to prevent interference and maintain evaluation integrity. Please complete your quiz independently.
-            </p>
-          </div>
-        ) : isOffline ? (
-          <div className="p-6 bg-[#F4F1EA] border-t border-[#E5E1D8] text-center">
-            <div className="flex items-center justify-center gap-2 text-[#2D332D] font-bold text-xs uppercase tracking-wider mb-1">
-              <WifiOff className="w-4 h-4 text-[#586358]" />
-              Offline Mode Active: Individual Study Policy
-            </div>
-            <p className="text-xs text-[#6D756D] max-w-md mx-auto">
-              In offline mode, the AI chatbot is not permitted to assist with questions. Please study downloaded course materials, notes, and solve questions individually. Reconnect online to restore AI assistance.
             </p>
           </div>
         ) : (

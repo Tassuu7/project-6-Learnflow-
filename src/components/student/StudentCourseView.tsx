@@ -277,15 +277,43 @@ export const StudentCourseView: React.FC<{
               </div>
             </div>
 
-            {/* In-depth Tutorial Body */}
-            <div className="py-6 prose dark:prose-invert max-w-none text-slate-800 dark:text-slate-200 leading-relaxed space-y-4">
-              <p className="text-base sm:text-lg font-medium text-slate-700 dark:text-slate-300">
-                {activeTopic.summary}
-              </p>
-
-              <div className="bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 text-sm font-sans space-y-2 whitespace-pre-line">
-                {activeTopic.content}
+            {/* Topic Theory & Key Points */}
+            <div className="py-6 space-y-6">
+              {/* 1. Explanatory Theory Paragraph */}
+              <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+                <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Topic Overview & Concept</span>
+                </div>
+                <p className="text-sm sm:text-base font-normal text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {activeTopic.content}
+                </p>
               </div>
+
+              {/* 2. Key Learning Points */}
+              {activeTopic.keyPoints && activeTopic.keyPoints.length > 0 && (
+                <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/80 dark:border-emerald-800/50 rounded-2xl p-6 space-y-3">
+                  <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-bold text-xs uppercase tracking-wider">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>Key Learning Points</span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {activeTopic.keyPoints.map((point, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-3 bg-white dark:bg-slate-900 p-4 rounded-xl border border-emerald-100 dark:border-emerald-900/40 shadow-xs"
+                      >
+                        <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-600 text-white text-[11px] font-bold shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+                          {point}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* 3. W3Schools-Style Interactive "Try It Yourself" Sandbox Editor */}
@@ -317,6 +345,17 @@ export const StudentCourseView: React.FC<{
                   </button>
                 </div>
               </div>
+
+              {/* Example Walkthrough Note */}
+              {activeTopic.exampleExplanation && (
+                <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 flex items-start gap-2.5">
+                  <Code2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-slate-900 dark:text-white mr-1.5">Example Walkthrough:</span>
+                    {activeTopic.exampleExplanation}
+                  </div>
+                </div>
+              )}
 
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
                 Edit the code below and click <span className="font-bold text-emerald-600">Run Code / Try it Yourself</span> to test the live output:
